@@ -1,0 +1,76 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Login and Signup</title>
+    
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Login or Signup</h5>
+                        <form id="loginSignupForm" method="post" action="./signup_login.php" onsubmit="return validateForm();" >
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username">
+                                <!-- <p class="size">username should only contain letters and numbers only.</p> -->
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+                            <!-- <p class="size">password contains atleast one lowercase,uppercase letter and one special character and one numeric</p> -->
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary btn-block" name="loginBtn" id="loginBtn" >Login</button>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-success btn-block" name="signupBtn" id="signupBtn" >Signup</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>function validateForm() {
+        var username = sanitizeInput(document.getElementById("username").value);
+        var password = sanitizeInput(document.getElementById("password").value);
+        var usernameRegwx = /^[a-zA-Z0-9]+$/;
+        var pswd_regx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+        // Basic client-side validation
+        if (username.length < 8 && username.length>17 ) {
+            alert("Username must be at least 8 to 16 characters");
+            return false; 
+        }
+        if (username.length < 8 && password.length>17 ) {
+            alert("Password must be at least 8 to 16 characters");
+            return false; 
+        }
+        if(!usernameRegwx.test(username)){
+    alert("username should contain letters and numbers only");
+    return false;
+    }
+    function sanitizeInput(input) {
+        return input.trim();
+    }
+    if(!pswd_regx.test(password)){
+        alert("Invalid password format.");
+        return false;
+    }
+    return true;
+    }</script>
+    </body>
+</html>
